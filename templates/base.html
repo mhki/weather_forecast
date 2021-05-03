@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../static/style.css" rel="stylesheet">
+</head>
+
+<body class="d-flex h-100 text-white bg-dark">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-3">
+            <div>
+                <h3 class="float-md-start mb-0">Weather</h3>
+                <nav class="nav nav-masthead justify-content-center float-md-end">
+                    {% if current_user.is_authenticated %}
+                    <a class="nav-link" href="{{ url_for('main.profile') }}">{{ current_user.username }}</a>
+                    <a class="nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>{% endif %} {% if not current_user.is_authenticated %}
+                    <a class="nav-link" href="{{ url_for('auth.signup') }}">Sign Up</a>
+                    <a class="nav-link" href="{{ url_for('auth.login') }}">Log In</a> {% endif %}
+                </nav>
+            </div>
+        </header>
+
+        <main class="px-3">
+            <h1 class="mb-2">{% block header %}{% endblock %}</h1>
+
+            {% for message in get_flashed_messages() %}
+
+
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                {{ message }}</a>.
+            </div>
+            {% endfor %} {% block content %}{% endblock %}
+
+        </main>
+
+    </div>
+
+
+
+</body>
+
+</html>

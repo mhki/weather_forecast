@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+<p>
+    {% block title %}Weather | Sign In{% endblock %}
+</p>
+
+
+{% block content %}
+<h1 class="text-center">Sign_In</h1>
+<div class="row text-center">
+    <div class="col-md-8 offset-2 ">
+
+        <form method="POST" action="/login">
+
+            <div class="col-md-12 mb-2 form-group">
+                <label for="Email"></label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
+            </div>
+
+
+            <div class="mb-3 form-group">
+                <label for="password"></label>
+                <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+            </div>
+
+            <button class="btn btn-success btn-lg btn-block mb-3">Sign in</button>
+        </form>
+        <a href="{{ url_for('auth.signup') }}">Not Registered?</a>
+    </div>
+</div>
+{% endblock %}

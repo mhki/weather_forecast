@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+<p>
+    {% block title %}Weather | Profile{% endblock %}
+</p> {% block content %}
+
+<form method="POST" class="d-flex mb-3">
+    <input class="form-control me-2" type="text" name="city" id="city" placeholder="Search City">
+    <button class="btn btn-outline-light">Search</button>
+</form>
+
+
+<div class="nav-scroller d">
+    <nav class="nav nav-masthead" aria-label="Secondary navigation">
+        <a class="nav-link" aria-current="page" href="#"> <strong>Popular Cities</strong></a>
+        {% for weather in weather_data1 %}
+        <a class="nav-link" href="#">{{ weather.city }}<span class="badge bg-light text-dark align-text-bottom">{{ weather.temperature }}&#8451;</span></a> {% endfor %}
+    </nav>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class=" mb-4 ">
+                <div class="card-body">
+
+                    <h4 class="my-0 fw-normal offset-0">{{ weather_user.city }}, {{weather_user.country }}</h4>
+                    <h1 class="card-title pricing-card-title h pb-md-0"> {{ weather_user.temperature }}&#8451;<small class="offset-5 text-muted">
+                        <img src="http://openweathermap.org/img/w/{{  weather_user.icon }}.png" alt="image">
+                    </small></h1>
+                    <h5 class="fw-normal ">{{ weather_user.description }}</h5>
+                </div>
+            </div>
+        </div>
+
+        {% for weather in weather_data %}
+        <div class="col-md-12">
+            <div class=" mb-4 ">
+                <div class="card-body">
+                    <h4 class="my-0 fw-normal offset-0">{{ weather.city }}, {{weather.country }}</h4>
+                    <h1 class="card-title pricing-card-title h pb-md-0">{{ weather.temperature }}&#8451;<small class="offset-5 text-muted">
+                        <img src="http://openweathermap.org/img/w/{{  weather.icon }}.png" alt="image">
+                    </small></h1>
+                    <h5 class="fw-normal ">{{ weather.description }}</h5>
+                    <a href="{{ url_for('main.delete_city', name=weather.city) }}">
+                        <button class="btn btn-outline-light">Delete</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- /.row -->
+</div>
+</form>
+{% endblock %}

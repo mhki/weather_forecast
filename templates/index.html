@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+<p>
+    {% block title %}Weather | Home {% endblock %}
+
+</p>
+<p>{% block header %}
+    <h1>Featured Cities</h1>
+</p>
+{% endblock %} {% block content %} {% for weather in weather_data %}
+<div class="col">
+    <div class=" mb-4 ">
+        <div class="card-body">
+            <h4 class="my-0 fw-normal offset-0">{{ weather.city }}, {{ weather.country }}</h4>
+            <h1 class="card-title pricing-card-title h pb-md-0">{{ weather.temperature }}&#8451;<small class="offset-5 text-muted">
+                    <img src="http://openweathermap.org/img/w/{{  weather.icon }}.png" width="80px" height="80px" alt="image">
+                </small></h1>
+            <h3> {{ weather.description }}</h3>
+
+
+
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+{% endfor %} {% endblock %}
